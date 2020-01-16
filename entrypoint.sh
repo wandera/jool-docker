@@ -7,9 +7,3 @@ jool instance add --iptables --pool6 ${POOL6}
 
 iptables -t mangle -A PREROUTING -j JOOL
 ip6tables -t mangle -A PREROUTING -j JOOL
-
-while true; do
-  echo "---"
-  jool stats display
-  sleep 10
-done
