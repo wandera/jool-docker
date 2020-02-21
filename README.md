@@ -1,8 +1,8 @@
 # jool-docker
 
 [![Docker Build Status](https://img.shields.io/docker/cloud/build/wanderadock/jool)](https://hub.docker.com/r/wanderadock/jool/)
-[![GitHub release](https://img.shields.io/github/v/release/WanderaOrg/jool-docker)](https://github.com/WanderaOrg/jool-docker/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/WanderaOrg/jool-docker/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/wandera/jool-docker)](https://github.com/wandera/jool-docker/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wandera/jool-docker/blob/master/LICENSE)
 
 [Jool](https://www.jool.mx/en/index.html) is a powerful kernel-space namespace-aware Stateful NAT64 and SIIT implementation.
 This repo contains a simple docker-wrapped configurator for the tool.
