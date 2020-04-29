@@ -1,8 +1,8 @@
-FROM alpine:3.11
+FROM alpine:edge
 
 LABEL maintainer="Martin Kulich <martin.kulich@wandera.com>"
 
-ARG JOOL_VER=4.0.6-r3
+ARG JOOL_VER=4.0.8-r0
 
 RUN apk --no-cache add \
     jool-tools=${JOOL_VER} \
