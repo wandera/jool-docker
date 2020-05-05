@@ -37,19 +37,19 @@ The container has to run with extended capabilities for network.
 To set up Jool on local network with default well-known prefix `64:ff9b::/96`:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network host wanderadock/jool /setup.sh
+docker run --cap-add=NET_ADMIN --network host wanderadock/jool
 ```
 
 To set up Jool on docker network `test` with custom prefix `2001:db8:1234::/96`:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network test wanderadock/jool /setup.sh 2001:db8:1234::/96
+docker run --cap-add=NET_ADMIN --network test wanderadock/jool 2001:db8:1234::/96
 ```
 
 If you ran Jool on top of your host network, you may need to cleanup:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network host wanderadock/jool /cleanup.sh
+docker run --cap-add=NET_ADMIN --network host --entrypoint /cleanup.sh wanderadock/jool
 ```
 
 Otherwise all Jool instances get cleaned when network namespace is destroyed (usually when the {container/docker network/kubernetes pod} is destroyed).
@@ -67,7 +67,8 @@ spec:
   initContainers:
     - name: jool
       image: wanderadock/jool:latest
-      command: ["/setup.sh"]
+      args:
+        - "2001:db8:1234::/96" # use custom prefix
       securityContext:
         capabilities:
           add: ["NET_ADMIN"]
