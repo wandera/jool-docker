@@ -12,4 +12,4 @@ RUN apk --no-cache add \
 COPY *.sh /
 RUN chmod +x /*.sh
 
-CMD ["/setup.sh"]
+ENTRYPOINT ["/setup.sh"]
