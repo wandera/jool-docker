@@ -24,8 +24,8 @@ Example for Ubuntu 18.04:
 
 ```bash
 apt-get update
-wget https://github.com/NICMx/Jool/releases/download/v4.0.6/jool-dkms_4.0.6-1_all.deb -O /tmp/jool-dkms_4.0.6-1_all.deb
-apt install -y /tmp/jool-dkms_4.0.6-1_all.deb
+wget https://github.com/NICMx/Jool/releases/download/v4.0.8/jool-dkms_4.0.8-1_all.deb -O /tmp/jool-dkms_4.0.8-1_all.deb
+apt install -y /tmp/jool-dkms_4.0.8-1_all.deb
 modprobe jool
 modprobe ip6table_mangle
 ```
