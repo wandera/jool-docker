@@ -43,7 +43,13 @@ docker run --cap-add=NET_ADMIN --network host wanderadock/jool
 To set up Jool on docker network `test` with custom prefix `2001:db8:1234::/96`:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network test wanderadock/jool 2001:db8:1234::/96
+docker run --cap-add=NET_ADMIN --network test wanderadock/jool --pool6=2001:db8:1234::/96
+```
+
+To set up Jool on docker network `test` with custom IPv6 MTU `1420`:
+
+```bash
+docker run --cap-add=NET_ADMIN --network test wanderadock/jool --lowest-ipv6-mtu=1420
 ```
 
 If you ran Jool on top of your host network, you may need to cleanup:
@@ -68,7 +74,8 @@ spec:
     - name: jool
       image: wanderadock/jool:latest
       args:
-        - "2001:db8:1234::/96" # use custom prefix
+        - "--pool6=2001:db8:1234::/96" # use custom prefix
+        - "--lowest-ipv6-mtu=1420" # use custom IPv6 MTU
       securityContext:
         capabilities:
           add: ["NET_ADMIN"]
