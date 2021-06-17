@@ -2,7 +2,7 @@
 
 POOL6="64:ff9b::/96"
 LOWEST_IPV6_MTU=1280
-HANDLE_RST_DURING_FIN_RCV=false
+HANDLE_RST_DURING_FIN_RCV="false"
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -10,7 +10,7 @@ while [ $# -gt 0 ]; do
       POOL6="${1#*=}"
       ;;
     --lowest-ipv6-mtu=*)
-      LOWEST_IPV6_MTU="${1#*=}"
+      LOWEST_IPV6_MTU="true"
       ;;
     --handle-rst-during-fin-rcv=*)
       HANDLE_RST_DURING_FIN_RCV="${1#*=}"
@@ -21,7 +21,7 @@ while [ $# -gt 0 ]; do
       printf "* Usage: setup.sh [options...]\n"
       printf "*        --pool6=<IPv6>\n"
       printf "*        --lowest-ipv6-mtu=<mtu>\n"
-      printf "*        --handle-rst-during-fin-rcv=<boolean>\n"
+      printf "*        --handle-rst-during-fin-rcv\n"
       printf "************************************************************\n"
       exit 1
   esac
