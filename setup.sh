@@ -10,10 +10,10 @@ while [ $# -gt 0 ]; do
       POOL6="${1#*=}"
       ;;
     --lowest-ipv6-mtu=*)
-      LOWEST_IPV6_MTU="true"
+      LOWEST_IPV6_MTU="${1#*=}"
       ;;
-    --handle-rst-during-fin-rcv=*)
-      HANDLE_RST_DURING_FIN_RCV="${1#*=}"
+    --handle-rst-during-fin-rcv)
+      HANDLE_RST_DURING_FIN_RCV="true"
       ;;
     *)
       printf "************************************************************\n"
