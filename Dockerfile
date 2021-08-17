@@ -10,6 +10,7 @@ RUN wget https://www.jool.mx/download/jool-4.1.5.tar.gz && \
 FROM alpine:3.13
 RUN apk add libnl3-dev curl iptables ip6tables
 COPY --from=builder /usr/local/bin/jool /usr/local/bin/jool
+COPY --from=builder /usr/local/bin/joold /usr/local/bin/joold
 COPY --from=builder /usr/lib/xtables/libxt_JOOL.so /usr/lib/xtables/libxt_JOOL.so
 
 COPY *.sh /
