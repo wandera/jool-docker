@@ -38,6 +38,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - name: Build and push
         uses: docker/build-push-action@v2
+        id: build
         with:
           context: .
           push: true
@@ -46,5 +47,4 @@ jobs:
       - name: Sign the images
         env:
           DIGEST: ${{ steps.build.outputs.digest }}
-          TAGS: ${{ steps.docker_meta.outputs.tags }}
-        run: cosign sign --yes "${TAGS}@${DIGEST}"
+        run: cosign sign --yes "${{ env.REGISTRY }}//${{ env.IMAGE_NAME }}@${DIGEST}"
