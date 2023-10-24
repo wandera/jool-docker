@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: jool-docker
+  labels:
+    - jira-key: JSC
+    - language: Dockerfile
+  annotations:
+    backstage.io/source-location: url:https://github.com/wandera/jool-docker
+spec:
+  type: infrastructure
+  lifecycle: production
+  owner: zircon
+  system: Connect
+  description: Docker image for jool
