@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/wandera/jool-docker)](https://github.com/wandera/jool-docker/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wandera/jool-docker/blob/master/LICENSE)
 
-[Jool](https://www.jool.mx/en/index.html) is a powerful kernel-space namespace-aware Stateful NAT64 and SIIT implementation.
+[Jool](https://nicmx.github.io/Jool/en/index.html) is a powerful kernel-space namespace-aware Stateful NAT64 and SIIT implementation.
 This repo contains a simple docker-wrapped configurator for the tool.
 Even though Jool supports both iptables and netfilter backend, this image uses iptables only.
 
@@ -18,7 +18,7 @@ Even though Jool supports both iptables and netfilter backend, this image uses i
 ## Prerequisities
 
 Before you're able to run the image, your host machine has to have Jool installed and loaded as module.
-Follow [Jool docs](https://www.jool.mx/en/documentation.html) for installation instructions.
+Follow [Jool docs](https://nicmx.github.io/Jool/en/documentation.html) for installation instructions.
 
 Example for Ubuntu 18.04:
 
