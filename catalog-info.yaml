@@ -3,8 +3,8 @@ kind: Component
 metadata:
   name: jool-docker
   labels:
-    - jira-key: JSC
-    - language: Dockerfile
+    jira-key: JSC
+    language: Dockerfile
   annotations:
     backstage.io/source-location: url:https://github.com/wandera/jool-docker
 spec:
