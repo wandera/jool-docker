@@ -1,6 +1,5 @@
 # jool-docker
 
-[![Docker Build Status](https://img.shields.io/docker/cloud/build/wanderadock/jool)](https://hub.docker.com/r/wanderadock/jool/)
 [![GitHub release](https://img.shields.io/github/v/release/wandera/jool-docker)](https://github.com/wandera/jool-docker/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wandera/jool-docker/blob/master/LICENSE)
 
@@ -24,8 +23,8 @@ Example for Ubuntu 18.04:
 
 ```bash
 apt-get update
-wget https://github.com/NICMx/Jool/releases/download/v4.0.8/jool-dkms_4.0.8-1_all.deb -O /tmp/jool-dkms_4.0.8-1_all.deb
-apt install -y /tmp/jool-dkms_4.0.8-1_all.deb
+wget https://github.com/NICMx/Jool/releases/download/v4.1.11/jool-dkms_4.1.11-1_all.deb -O /tmp/jool-dkms_4.1.11-1_all.deb
+apt install -y /tmp/jool-dkms_4.1.11-1_all.deb
 modprobe jool
 modprobe ip6table_mangle
 ```
@@ -37,25 +36,25 @@ The container has to run with extended capabilities for network.
 To set up Jool on local network with default well-known prefix `64:ff9b::/96`:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network host wanderadock/jool
+docker run --cap-add=NET_ADMIN --network host ghcr.io/wandera/jool
 ```
 
 To set up Jool on docker network `test` with custom prefix `2001:db8:1234::/96`:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network test wanderadock/jool --pool6=2001:db8:1234::/96
+docker run --cap-add=NET_ADMIN --network test ghcr.io/wandera/jool --pool6=2001:db8:1234::/96
 ```
 
 To set up Jool on docker network `test` with custom IPv6 MTU `1420`:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network test wanderadock/jool --lowest-ipv6-mtu=1420
+docker run --cap-add=NET_ADMIN --network test ghcr.io/wandera/jool --lowest-ipv6-mtu=1420
 ```
 
 If you ran Jool on top of your host network, you may need to cleanup:
 
 ```bash
-docker run --cap-add=NET_ADMIN --network host --entrypoint /cleanup.sh wanderadock/jool
+docker run --cap-add=NET_ADMIN --network host --entrypoint /cleanup.sh ghcr.io/wandera/jool
 ```
 
 Otherwise all Jool instances get cleaned when network namespace is destroyed (usually when the {container/docker network/kubernetes pod} is destroyed).
@@ -72,7 +71,7 @@ metadata:
 spec:
   initContainers:
     - name: jool
-      image: wanderadock/jool:latest
+      image: ghcr.io/wandera/jool:latest
       args:
         - "--pool6=2001:db8:1234::/96" # use custom prefix
         - "--lowest-ipv6-mtu=1420" # use custom IPv6 MTU
@@ -84,4 +83,4 @@ spec:
 
 ## Docker repository
 
-The tool is released as docker image, check the [repository](https://hub.docker.com/r/wanderadock/jool/).
+The tool is released as docker image, check the [repository](https://ghcr.io/wandera/jool).
