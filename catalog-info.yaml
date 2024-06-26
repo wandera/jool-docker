@@ -6,9 +6,10 @@ metadata:
     jira-key: JSC
     language: Dockerfile
   annotations:
-    backstage.io/source-location: url:https://github.com/wandera/jool-docker
+    github.com/project-slug: 'wandera/jool-docker'
+    backstage.io/techdocs-ref: dir:.
 spec:
-  type: infrastructure
+  type: tooling
   lifecycle: production
   owner: zircon
   system: Connect
