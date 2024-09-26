@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-LABEL maintainer="Martin Kulich <martin.kulich@wandera.com>"
+LABEL maintainer="Zircon team <ww_zirconsquad@jamf.com>"
 
 ARG JOOL_VER=4.1.13-r0
 
