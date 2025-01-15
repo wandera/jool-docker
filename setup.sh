@@ -33,7 +33,10 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-jool instance add --netfilter --pool6 ${POOL6} default
+jool instance add --iptables --pool6 ${POOL6} default
 jool global update lowest-ipv6-mtu ${LOWEST_IPV6_MTU}
 jool global update handle-rst-during-fin-rcv ${HANDLE_RST_DURING_FIN_RCV}
 jool global update drop-externally-initiated-tcp ${DROP_EXTERNALLY_INITIATED_TCP}
+
+iptables -t mangle -A PREROUTING -j JOOL
+ip6tables -t mangle -A PREROUTING -j JOOL
