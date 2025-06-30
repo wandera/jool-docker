@@ -40,7 +40,8 @@ jobs:
 
   sonar:
     name: Run Sonar
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, jamf-ubuntu-latest]
+#    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
       with:
