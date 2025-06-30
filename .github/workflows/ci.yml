@@ -1,0 +1,66 @@
+name: CI
+
+defaults:
+  run:
+    shell: sh
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: write
+  contents: read
+  id-token: write
+  pull-requests: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+jobs:
+  setup:
+    name: Setup pipeline
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.short-sha }}
+      owner: ${{ steps.owner.outputs.name }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: owner
+        run: echo "name=$(yq '.spec.owner' ./catalog-info.yaml | head -1)" >> $GITHUB_OUTPUT
+      - id: version
+        run: echo "short-sha=$(echo $GITHUB_SHA | cut -c 1-7)" >> $GITHUB_OUTPUT
+
+  sonar:
+    name: Run Sonar
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: ./.github/actions/sonar
+      with:
+        sonar_token: ${{ secrets.SONAR_TOKEN }}
+        sonar_gate_enable: ${{ github.ref_name != github.event.repository.default_branch }}
+
+  failure:
+    name: Notify failure
+    runs-on: ubuntu-latest
+    needs: [setup, sonar]
+    environment: release
+    if: failure() && github.ref_name == github.event.repository.default_branch
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jamf/github-actions-common/notify-failure@v1
+        with:
+          owner: ${{ needs.setup.outputs.owner }}
+          slack_token: ${{ secrets.SLACK_TOKEN }}

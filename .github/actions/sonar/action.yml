@@ -1,0 +1,37 @@
+name: Run Sonar
+description: Run Sonar analysis
+
+inputs:
+  sonar_host:
+    description: Sonar host
+    required: false
+    default: https://sonarqube.jamf.build
+  sonar_gate_enable:
+    description: When true and Sonar check fails it fails the build
+    required: false
+    default: "true"
+  sonar_token:
+    description: Sonar token to use for authentication
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - name: SonarQube Scan
+    uses: sonarsource/sonarqube-scan-action@v2
+    env:
+      SONAR_TOKEN: ${{ inputs.sonar_token }}
+      SONAR_HOST_URL: ${{ inputs.sonar_host }}
+    with:
+      args: >
+        -Dsonar.sources=.
+        -Dsonar.inclusions=Dockerfile
+        -Dsonar.projectName=${{ github.event.repository.name }}
+        -Dsonar.projectKey=com.wandera.zircon:${{ github.event.repository.name }}        
+
+  - name: SonarQube Gate
+    if: ${{ inputs.sonar_gate_enable == 'true' }}
+    uses: jamf/github-actions-sonar/gate@v1
+    with:
+      sonar_token: ${{ inputs.sonar_token }}
+      sonar_project_key: com.wandera.zircon:${{ github.event.repository.name }}

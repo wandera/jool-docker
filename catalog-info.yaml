@@ -8,6 +8,7 @@ metadata:
   annotations:
     github.com/project-slug: 'wandera/jool-docker'
     backstage.io/techdocs-ref: dir:.
+    sonarqube.org/project-key: com.wandera.zircon:jool-docker
 spec:
   type: tooling
   lifecycle: production
