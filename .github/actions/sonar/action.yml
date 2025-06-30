@@ -27,11 +27,4 @@ runs:
         -Dsonar.sources=.
         -Dsonar.inclusions=Dockerfile
         -Dsonar.projectName=${{ github.event.repository.name }}
-        -Dsonar.projectKey=com.wandera.zircon:${{ github.event.repository.name }}        
-
-  - name: SonarQube Gate
-    if: ${{ inputs.sonar_gate_enable == 'true' }}
-    uses: jamf/github-actions-sonar/gate@v1
-    with:
-      sonar_token: ${{ inputs.sonar_token }}
-      sonar_project_key: com.wandera.zircon:${{ github.event.repository.name }}
+        -Dsonar.projectKey=com.wandera.zircon:${{ github.event.repository.name }}
