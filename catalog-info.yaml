@@ -12,5 +12,5 @@ spec:
   type: tooling
   lifecycle: production
   owner: zircon
-  system: Connect
+  system: jsc-ztna
   description: Docker image for jool
